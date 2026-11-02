@@ -1,0 +1,165 @@
+/* ===== Awwwards-Level Animation & Motion System (Custom CSS) ===== */
+
+/* Lenis Recommended Base Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ── Typography Masking & 3D Kinetic Containers ── */
+.lineMask {
+  display: block;
+  overflow: visible;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+  perspective: 800px;
+}
+
+.lineInner {
+  display: block;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+}
+
+.wordMask {
+  display: inline-block;
+  overflow: visible;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  perspective: 600px;
+}
+
+.wordInner {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+}
+
+.charMask {
+  display: inline-block;
+  overflow: visible;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.charInner {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+}
+
+.phraseItem {
+  display: inline;
+}
+
+/* ── Magnetic Element Wrapper ── */
+.magneticWrap {
+  display: inline-block;
+  position: relative;
+}
+
+/* ── Precision Underline Hover Effect for Navigation & Footer Links ── */
+.hoverUnderline {
+  position: relative;
+  display: inline-block;
+}
+
+.hoverUnderline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1.5px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.hoverUnderline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ── Subtle Shimmer & Button Micro-Interactions ── */
+.btnOverflow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btnOverflow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.26),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.btnOverflow:hover::before {
+  left: 140%;
+}
+
+/* ── Architectural Divider Line ── */
+.dividerLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26, 26, 26, 0.1) 20%,
+    rgba(235, 87, 34, 0.22) 50%,
+    rgba(26, 26, 26, 0.1) 80%,
+    transparent 100%
+  );
+  transform-origin: center center;
+}
+
+/* ── Accessibility: Respect Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .lineInner,
+  .wordInner,
+  .charInner,
+  .phraseItem {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}

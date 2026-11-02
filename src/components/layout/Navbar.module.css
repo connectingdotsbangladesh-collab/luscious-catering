@@ -1,0 +1,207 @@
+/* ===== Navbar — matches Pinterest pin exactly ===== */
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: transparent;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease, transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.scrolled {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.headerHidden {
+  transform: translateY(-105%);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+  max-width: 1560px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 3.5vw, 52px);
+}
+
+/* ── Brand Logo: italic serif matching pin ── */
+.brand {
+  text-decoration: none;
+}
+
+.logoText {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  font-style: italic;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+/* ── Right Group (Nav Links + Login) ── */
+.navRightGroup {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navCenter {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+.navLink:hover {
+  color: #eb5722;
+}
+
+/* ── Actions: Login button ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Pinterest Login button: orange outline pill */
+.loginBtn {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: #eb5722;
+  border: 1.5px solid #eb5722;
+  background: transparent;
+  padding: 8px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loginBtn:hover {
+  background-color: #eb5722;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(235, 87, 34, 0.28);
+}
+
+/* ── User Badge (when logged in) ── */
+.userBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background-color: #fff2ed;
+  border-radius: 50px;
+  border: 1px solid rgba(235, 87, 34, 0.2);
+}
+
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #eb5722;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.userName {
+  font-size: 13px;
+  font-weight: 600;
+  color: #eb5722;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logoutBtn {
+  color: #888;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border: none;
+  background: none;
+  border-radius: 4px;
+}
+
+.logoutBtn:hover {
+  color: #d32f2f;
+}
+
+/* ── Mobile ── */
+.mobileToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #1a1a1a;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .navCenter {
+    display: none;
+  }
+
+  .mobileToggle {
+    display: block;
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 84px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    gap: 18px;
+  }
+
+  .mobileMenu .navLink {
+    font-size: 16px;
+    padding: 8px 0;
+  }
+
+  .mobileActions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+  }
+}

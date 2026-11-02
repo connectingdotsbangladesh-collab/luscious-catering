@@ -1,0 +1,202 @@
+/* ===== Section 3: Let's see what other says — Exact Photo 3 Match ===== */
+
+.section {
+  position: relative;
+  padding: 100px 0 120px;
+  background-color: #f7f5f2;
+  overflow: hidden;
+}
+
+/* Floating Elements from Photo 3 */
+.decorStarAnise {
+  position: absolute;
+  top: 36px;
+  right: 20px;
+  width: 190px;
+  height: 140px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorBokchoy {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 180px;
+  height: 110px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 3.5vw, 48px);
+  position: relative;
+  z-index: 3;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Left Image Column */
+.imageColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noodleBowlWrapper {
+  width: 420px;
+  height: 420px;
+  position: relative;
+  cursor: pointer;
+}
+
+.bowlHoverLoop {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.noodleBowlImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Right Content Column */
+.contentColumn {
+  max-width: 480px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: #99958e;
+  letter-spacing: 0.01em;
+  margin-bottom: 32px;
+}
+
+/* Quote Block */
+.quoteBlock {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.quoteMark {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  line-height: 1;
+  color: #1a1a1a;
+  font-weight: 700;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: top;
+}
+
+.quoteText {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: #66625c;
+  display: inline;
+}
+
+/* Avatars Row matching Photo 3 */
+.avatarsRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatarBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+
+.avatarBtn:hover {
+  transform: scale(1.08);
+}
+
+.avatarCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid transparent;
+  transition: all 0.25s ease;
+  filter: grayscale(100%) opacity(0.7);
+}
+
+.avatarActive .avatarCircle {
+  border-color: #f59e0b;
+  transform: scale(1.15);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
+  filter: grayscale(0%) opacity(1);
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .contentColumn {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .avatarsRow {
+    justify-content: center;
+  }
+
+  .decorStarAnise,
+  .decorBokchoy {
+    display: none;
+  }
+
+  .noodleBowlWrapper {
+    width: 280px;
+    height: 280px;
+  }
+}

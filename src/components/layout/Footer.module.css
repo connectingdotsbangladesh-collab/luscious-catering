@@ -1,0 +1,109 @@
+/* ===== Footer — Exact Photo 4 Match ===== */
+
+.footer {
+  position: relative;
+  background-color: #f7f5f2;
+  padding: 80px 0 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Floating Elements from Photo 4 */
+.decorGarlic {
+  position: absolute;
+  top: 85px;
+  right: 22%;
+  width: 92px;
+  height: 92px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorOnionRing {
+  position: absolute;
+  bottom: 36px;
+  right: 28px;
+  width: 115px;
+  height: 96px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 3.5vw, 48px);
+  position: relative;
+  z-index: 3;
+}
+
+.columnsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-bottom: 60px;
+}
+
+.columnTitle {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.linksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: #6b665f;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.link:hover {
+  color: #eb5722;
+  transform: translateX(2px);
+}
+
+.bottomBar {
+  padding-top: 32px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.copyright {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: #a8a39b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .columnsGrid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .decorGarlic,
+  .decorOnionRing {
+    display: none;
+  }
+}

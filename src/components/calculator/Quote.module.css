@@ -1,0 +1,328 @@
+.quoteSection {
+  padding: 100px 0;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.headerArea {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 50px;
+}
+
+.subHeading {
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.sectionDesc {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.calculatorCard {
+  background: var(--bg-canvas);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Controls Column */
+.controlsCol {
+  padding: 48px;
+}
+
+.controlGroup {
+  margin-bottom: 32px;
+}
+
+.controlLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.counterVal {
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.slider {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: #e2ddd5;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 4px 12px var(--color-primary-glow);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  transition: transform 0.15s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.pillGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.pillBtn {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-subtle);
+  background: #ffffff;
+  color: var(--text-main);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.pillBtn:hover {
+  border-color: var(--color-primary);
+}
+
+.pillBtnActive {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.toggleRow:hover {
+  border-color: var(--border-medium);
+}
+
+.toggleText {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggleTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.toggleDesc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.switch {
+  position: relative;
+  width: 46px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sliderToggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d8d3c9;
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.sliderToggle:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .sliderToggle {
+  background-color: var(--color-primary);
+}
+
+.switch input:checked + .sliderToggle:before {
+  transform: translateX(20px);
+}
+
+/* Results Column */
+.resultsCol {
+  background-color: var(--bg-dark);
+  color: var(--text-inverted);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.resultsCol::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(235, 87, 34, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.resultsHeader {
+  margin-bottom: 24px;
+}
+
+.resultsTag {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.totalDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.totalCurrency {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.totalAmount {
+  font-family: var(--font-serif);
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.perGuestNote {
+  font-size: 14px;
+  color: #a49f97;
+}
+
+.breakdownList {
+  list-style: none;
+  margin: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.breakdownItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+}
+
+.itemLabel {
+  color: #cfcac2;
+}
+
+.itemVal {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.lockInBtn {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-spring);
+  box-shadow: 0 8px 24px var(--color-primary-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.lockInBtn:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(235, 87, 34, 0.45);
+}
+
+@media (max-width: 900px) {
+  .calculatorCard {
+    grid-template-columns: 1fr;
+  }
+  .controlsCol,
+  .resultsCol {
+    padding: 32px 24px;
+  }
+  .pillGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,190 @@
+/* ===== Section 2: What's on our Plate — Exact Photo 2 Match ===== */
+
+.section {
+  position: relative;
+  padding: 100px 0 120px;
+  background-color: #f7f5f2;
+  overflow: hidden;
+}
+
+/* Floating Elements matching Photo 2 */
+.decorSnowpeas {
+  position: absolute;
+  top: 64px;
+  left: 20px;
+  width: 170px;
+  height: 125px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorLobster {
+  position: absolute;
+  top: 68px;
+  right: 20px;
+  width: 180px;
+  height: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorGarlic {
+  position: absolute;
+  bottom: 28px;
+  left: 20px;
+  width: 165px;
+  height: 105px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 3.5vw, 48px);
+  position: relative;
+  z-index: 3;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: #99958e;
+  letter-spacing: 0.01em;
+  margin-bottom: 36px;
+}
+
+/* Tabs */
+.tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+}
+
+.tabBtn {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #77736c;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tabBtn:hover {
+  color: #1a1a1a;
+}
+
+.tabActive {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.activeIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 68px;
+  height: 2px;
+  background-color: #eb5722;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* 3 Dishes Grid */
+.dishesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.dishCard {
+  text-align: center;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 16px;
+  transform-style: preserve-3d;
+}
+
+.plateWrapper {
+  width: 248px;
+  height: 248px;
+  margin: 0 auto 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plateHoverLoop {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+.plateImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dishName {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.dishDescription {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.65;
+  color: #8c8880;
+  max-width: 290px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dishesGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .decorSnowpeas,
+  .decorLobster,
+  .decorGarlic {
+    display: none;
+  }
+}

@@ -1,0 +1,157 @@
+/* ===== Section 4: Newsletter — Exact Photo 4 Match ===== */
+
+.section {
+  position: relative;
+  padding: 110px 0 100px;
+  background-color: #f7f5f2;
+  overflow: hidden;
+}
+
+/* Floating Elements from Photo 4 */
+.decorSkillet {
+  position: absolute;
+  top: 28px;
+  right: 8px;
+  width: 225px;
+  height: 225px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.skilletHoverLoop {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.decorPepper {
+  position: absolute;
+  top: 72px;
+  left: 32px;
+  width: 112px;
+  height: 112px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.decorImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 3;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #8c8880;
+  margin-bottom: 36px;
+  letter-spacing: 0.01em;
+}
+
+/* Form matching Photo 4: Rounded pill input + orange subscribe button */
+.subscribeForm {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 6px 6px 6px 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  max-width: 520px;
+  width: 100%;
+  transition: box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.formFocused {
+  box-shadow: 0 16px 40px rgba(235, 87, 34, 0.14);
+  border-color: rgba(235, 87, 34, 0.35);
+  transform: translateY(-2px);
+}
+
+.emailInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #1a1a1a;
+  padding: 8px 12px 8px 0;
+}
+
+.emailInput::placeholder {
+  color: #b0aba3;
+}
+
+.subscribeBtn {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #eb5722;
+  padding: 12px 34px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(235, 87, 34, 0.35);
+}
+
+.subscribeBtn:hover {
+  background-color: #d34411;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(235, 87, 34, 0.45);
+}
+
+.successMessage {
+  margin-top: 18px;
+  font-size: 13.5px;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .subscribeForm {
+    flex-direction: column;
+    padding: 14px;
+    border-radius: 20px;
+    gap: 12px;
+  }
+
+  .emailInput {
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+  }
+
+  .subscribeBtn {
+    width: 100%;
+  }
+
+  .decorSkillet,
+  .decorPepper {
+    display: none;
+  }
+}

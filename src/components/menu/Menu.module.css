@@ -1,0 +1,276 @@
+.menuSection {
+  padding: 100px 0;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.headerArea {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 50px;
+}
+
+.subHeading {
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.sectionDesc {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Category Tabs */
+.categoryTabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.tabBtn {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.tabBtn:hover {
+  color: var(--text-main);
+  border-color: var(--border-medium);
+  background-color: var(--bg-canvas-subtle);
+}
+
+.tabBtnActive {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+}
+
+.tabBtnActive:hover {
+  background-color: var(--color-primary-hover);
+  color: #ffffff;
+}
+
+/* Dietary Filter Pills */
+.filterRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.filterLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-right: 6px;
+}
+
+.dietaryPill {
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.dietaryPill:hover {
+  border-color: var(--border-medium);
+}
+
+.dietaryPillActive {
+  background-color: var(--color-accent-olive);
+  color: #ffffff;
+  border-color: var(--color-accent-olive);
+}
+
+/* Menu Grid */
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 32px;
+}
+
+.menuCard {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  transition: var(--transition-spring);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.menuCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(235, 87, 34, 0.25);
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background-color: var(--bg-canvas-subtle);
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menuCard:hover .cardImg {
+  transform: scale(1.08);
+}
+
+.cardPriceBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(25, 24, 23, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.dietaryBadgeGroup {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.dietBadge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  color: var(--text-main);
+}
+
+.cardBody {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardCategory {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.cardTagline {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--color-accent-gold);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.cardDesc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.cardFooter {
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.servingStyle {
+  font-size: 11.5px;
+  color: var(--text-light);
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inquireDishBtn {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border: 1px solid rgba(235, 87, 34, 0.2);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.inquireDishBtn:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 32px;
+  }
+  .menuGrid {
+    grid-template-columns: 1fr;
+  }
+}
