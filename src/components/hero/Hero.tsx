@@ -160,11 +160,31 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
     };
   }, []);
 
-  const subHeadingWords = 'Life is so endlessly delicious.'.split(' ');
+  const subHeadingWords =
+    'Piping-Hot Office Lunches & Grand Celebration Banquets.'.split(' ');
   const descriptionWords =
-    'Dumpling is a broad classification for a dish that consists of pieces of dough made from a variety of starch sources wrapped around a filling, or of dough with no filling.'.split(
+    'Welcome to Ahlan Catering. We deliver freshly crafted executive corporate lunches straight to your office and orchestrate lavish wedding banquets and live-chef catering. Prepared fresh, delivered hot, and served with unconditional hospitality.'.split(
       ' '
     );
+
+  const scrollToCalculator = () => {
+    const calcEl = document.getElementById('calculator');
+    const lenis = (
+      window as Window & {
+        __lenis?: {
+          scrollTo: (
+            target: HTMLElement | string,
+            options?: { offset?: number; duration?: number }
+          ) => void;
+        };
+      }
+    ).__lenis;
+    if (lenis && calcEl) {
+      lenis.scrollTo(calcEl, { offset: -20, duration: 1.25 });
+    } else {
+      calcEl?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className={styles.hero} ref={heroRef}>
@@ -189,14 +209,14 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
       </div>
 
       <div className={styles.heroContainer}>
-        {/* Left Column: Pinterest Headline & Brand Story */}
+        {/* Left Column: Ahlan Headline & Brand Story */}
         <div ref={textColRef} className={styles.textColumn}>
           <h1 className={styles.mainHeading}>
             <span className={`${styles.headingLine} lineMask`}>
-              <span className="lineInner hero-line-inner">Take a taste</span>
+              <span className="lineInner hero-line-inner">Ahlan wa Sahlan.</span>
             </span>
             <span className={`${styles.headingLine} lineMask`}>
-              <span className="lineInner hero-line-inner">Come join us.</span>
+              <span className="lineInner hero-line-inner">Feast Like Royalty.</span>
             </span>
           </h1>
 
@@ -230,9 +250,35 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
               aria-label="Explore menu"
             >
               <span data-magnetic-text style={{ display: 'inline-block' }}>
-                Explore Now
+                Explore Menu
               </span>
             </button>
+            <button
+              onClick={scrollToCalculator}
+              className={`${styles.quoteBtn} btnOverflow`}
+              aria-label="Instant Quote Calculator"
+            >
+              <span>Instant Quote</span>
+            </button>
+          </div>
+
+          <div className={styles.heroTrustBadges}>
+            <div className={styles.trustItem}>
+              <span className={styles.trustDot} />
+              <span>100% Halal Certified</span>
+            </div>
+            <div className={styles.trustItem}>
+              <span className={styles.trustDot} />
+              <span>Punctual Hot Delivery</span>
+            </div>
+            <div className={styles.trustItem}>
+              <span className={styles.trustDot} />
+              <span>15 to 5,000+ Guests</span>
+            </div>
+            <div className={styles.trustItem}>
+              <span className={styles.trustDot} />
+              <span>Live Chef Stations</span>
+            </div>
           </div>
         </div>
 

@@ -1,0 +1,182 @@
+.pillarsSection {
+  padding: 100px 0;
+  background-color: var(--bg-canvas-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.headerArea {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px;
+}
+
+.subHeading {
+  font-size: 13.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 3.8vw, 44px);
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.sectionDesc {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+
+.pillarCard {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.pillarCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(235, 87, 34, 0.3);
+}
+
+.pillarCardHighlight {
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 16px 40px rgba(235, 87, 34, 0.12);
+  transform: scale(1.02);
+}
+
+.pillarCardHighlight:hover {
+  transform: scale(1.02) translateY(-8px);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.cardDesc {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #3e3b37;
+  line-height: 1.5;
+}
+
+.checkIcon {
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 15px;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.cardActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  background: #f7f4ed;
+  color: var(--text-main);
+  border: 1px solid rgba(30, 26, 20, 0.1);
+  cursor: pointer;
+}
+
+.cardActionBtn:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 20px rgba(235, 87, 34, 0.3);
+}
+
+.cardActionBtnPrimary {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 20px rgba(235, 87, 34, 0.3);
+}
+
+.cardActionBtnPrimary:hover {
+  background: var(--color-primary-hover);
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .pillarCardHighlight {
+    transform: none;
+  }
+
+  .pillarCardHighlight:hover {
+    transform: translateY(-8px);
+  }
+}

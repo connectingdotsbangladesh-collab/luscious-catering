@@ -33,18 +33,33 @@
   padding: 0 clamp(24px, 3.5vw, 52px);
 }
 
-/* ── Brand Logo: italic serif matching pin ── */
+/* ── Brand Logo: elegant serif for Ahlan Catering ── */
 .brand {
   text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .logoText {
   font-family: var(--font-serif);
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
   font-style: italic;
   color: #1a1a1a;
   letter-spacing: -0.02em;
+}
+
+.logoBadge {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
 }
 
 /* ── Right Group (Nav Links + Login) ── */

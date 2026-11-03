@@ -1,6 +1,7 @@
 export type DietaryPreference = 'vegan' | 'vegetarian' | 'halal' | 'gluten-free' | 'chef-special' | 'dairy-free';
 
 export type MenuCategory = 
+  | 'corporate-lunch'
   | 'signature-dumplings' 
   | 'hors-doeuvres' 
   | 'gourmet-mains' 
@@ -24,8 +25,10 @@ export interface MenuItem {
 }
 
 export type EventType = 
+  | 'corporate-lunch'
   | 'wedding' 
   | 'corporate-gala' 
+  | 'conference-seminar'
   | 'private-dinner' 
   | 'cocktail-reception' 
   | 'brand-launch' 

@@ -139,10 +139,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
   }, [mobileOpen]);
 
   const navItems = [
-    { label: 'Dumplings', href: '/#menu' },
-    { label: 'Recipes', href: '/#testimonials' },
-    { label: 'Food Menu', href: '/#menu' },
-    { label: 'Order Now', href: '/#newsletter' },
+    { label: 'Office Lunch', href: '/#services' },
+    { label: 'Event Catering', href: '/#services' },
+    { label: 'Our Menu', href: '/#menu' },
+    { label: 'Packages', href: '/#packages' },
+    { label: 'Instant Quote', href: '/#calculator' },
   ];
 
   return (
@@ -153,10 +154,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuth }) => {
       }`}
     >
       <div className={styles.navContainer}>
-        {/* Brand Logo — lowercase italic serif "luscious" matching Pinterest pin */}
+        {/* Brand Logo — elegant italic serif "ahlan" with Catering badge */}
         <div ref={brandWrapRef} className="magneticWrap">
           <Link href="/" ref={brandRef} className={styles.brand}>
-            <span className={styles.logoText}>luscious</span>
+            <span className={styles.logoText}>ahlan</span>
+            <span className={styles.logoBadge}>Catering</span>
           </Link>
         </div>
 

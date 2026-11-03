@@ -130,7 +130,7 @@ export const NewsletterSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const titleWords = 'Easy receipes will send to your inbox'.split(' ');
+  const titleWords = 'Taste The Ahlan Difference Today'.split(' ');
 
   return (
     <section ref={sectionRef} className={styles.section} id="newsletter">
@@ -172,7 +172,8 @@ export const NewsletterSection: React.FC = () => {
             ))}
           </h2>
           <p className={`${styles.subtitle} news-subtitle`}>
-            Get weekly updates on the newest chinese receipes in your mailbox!
+            Request a complimentary corporate office tasting box or schedule an event menu
+            consultation with our Executive Chef.
           </p>
 
           <form
@@ -188,7 +189,7 @@ export const NewsletterSection: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
-              placeholder="your email address"
+              placeholder="Enter corporate or personal email"
               required
               className={styles.emailInput}
             />
@@ -199,7 +200,7 @@ export const NewsletterSection: React.FC = () => {
                 className={`${styles.subscribeBtn} btnOverflow`}
               >
                 <span data-magnetic-text style={{ display: 'inline-block' }}>
-                  {submitted ? 'Subscribed!' : 'subscribe'}
+                  {submitted ? 'Inquiry Sent!' : 'Request Tasting'}
                 </span>
               </button>
             </div>
@@ -207,7 +208,7 @@ export const NewsletterSection: React.FC = () => {
 
           {submitted && (
             <p className={styles.successMessage}>
-              Thank you! Check your inbox for our latest Michelin-curated banquet recipes.
+              Thank you! Our concierge team will reach out promptly to coordinate your tasting box or event consultation.
             </p>
           )}
         </div>

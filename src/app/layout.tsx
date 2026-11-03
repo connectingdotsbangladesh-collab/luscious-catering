@@ -16,29 +16,30 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Luscious Haute Catering | Artisanal Dim Sum, Banquets & Luxury Galas',
+  title: 'Ahlan Catering | Premier Office Lunch, Bespoke Events & Luxury Catering',
   description:
-    'Life is so endlessly delicious. Luscious brings Michelin-caliber culinary craft, handmade artisanal dumplings, and bespoke banquet catering directly to your luxury events.',
+    'Ahlan wa Sahlan. Ahlan Catering provides piping-hot executive office lunches, breathtaking wedding banquets, and live-chef catering. 100% Halal certified, punctual delivery, and unforgettable culinary craftsmanship.',
   keywords: [
-    'catering',
-    'luxury catering',
-    'dim sum catering',
-    'dumpling catering',
-    'wedding banquet',
-    'corporate gala catering',
-    'artisanal food catering',
+    'Ahlan Catering',
+    'office lunch catering',
+    'corporate catering',
+    'daily office lunch delivery',
+    'wedding catering',
+    'event banquet catering',
+    'live cooking catering',
+    'halal catering',
   ],
   openGraph: {
-    title: 'Luscious Haute Catering | Artisanal Dim Sum & Luxury Banquets',
-    description: 'Take a taste. Come join us. Life is so endlessly delicious.',
-    url: 'https://lusciouscatering.com',
-    siteName: 'Luscious Catering',
+    title: 'Ahlan Catering | Office Lunch & Grand Event Catering',
+    description: 'Ahlan wa Sahlan. Warm hospitality, chef-crafted office lunches, and royal event feasts.',
+    url: 'https://ahlancatering.com',
+    siteName: 'Ahlan Catering',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=1200&q=85',
+        url: '/studio_4k_v3_hero_food.png',
         width: 1200,
         height: 630,
-        alt: 'Luscious Handcrafted Catering Platter',
+        alt: 'Ahlan Catering Handcrafted Platter',
       },
     ],
     locale: 'en_US',

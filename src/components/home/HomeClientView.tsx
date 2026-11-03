@@ -1,33 +1,64 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MenuItem } from '../../domain/types';
+import { MenuItem, CateringPackage, EventType } from '../../domain/types';
 import { Navbar } from '../layout/Navbar';
 import { Hero } from '../hero/Hero';
+import { ServicePillars } from '../pillars/ServicePillars';
 import { MenuSection } from '../menu/MenuSection';
+import { ExperienceSection } from '../experience/ExperienceSection';
+import { PackageSection } from '../packages/PackageSection';
+import { QuoteEstimator } from '../calculator/QuoteEstimator';
 import { TestimonialsSection } from '../testimonials/TestimonialsSection';
 import { NewsletterSection } from '../newsletter/NewsletterSection';
 import { Footer } from '../layout/Footer';
 import { BookingModal } from '../booking/BookingModal';
 import { AuthModal } from '../auth/AuthModal';
+import { CATERING_PACKAGES } from '../../repositories/firebase/mockData';
 
 interface HomeClientViewProps {
   initialMenuItems?: MenuItem[];
-  initialPackages?: unknown[];
+  initialPackages?: CateringPackage[];
 }
 
 export const HomeClientView: React.FC<HomeClientViewProps> = ({
   initialMenuItems,
+  initialPackages = CATERING_PACKAGES,
 }) => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingPrefill, setBookingPrefill] = useState<{
     dishName?: string;
+    guestCount?: number;
+    eventType?: EventType;
+    totalQuote?: number;
   }>({});
 
   const handleSelectDish = (dish: MenuItem) => {
     setBookingPrefill({
       dishName: dish.name,
+    });
+    setIsBookingOpen(true);
+  };
+
+  const handleSelectPackage = (pkg: CateringPackage) => {
+    setBookingPrefill({
+      dishName: `Package: ${pkg.name}`,
+    });
+    setIsBookingOpen(true);
+  };
+
+  const handleProceedToBooking = (details: {
+    guestCount: number;
+    eventType: EventType;
+    tier: string;
+    total: number;
+  }) => {
+    setBookingPrefill({
+      guestCount: details.guestCount,
+      eventType: details.eventType,
+      totalQuote: details.total,
+      dishName: `${details.eventType.replace('-', ' ').toUpperCase()} (${details.tier.toUpperCase()}) - ${details.guestCount} Pax`,
     });
     setIsBookingOpen(true);
   };
@@ -56,23 +87,40 @@ export const HomeClientView: React.FC<HomeClientViewProps> = ({
       <Navbar onOpenAuth={() => setIsAuthOpen(true)} />
 
       <main>
-        {/* Section 1: Hero (Matches Photo 1) */}
+        {/* Section 1: Hero */}
         <Hero onExploreClick={scrollToMenu} />
 
-        {/* Section 2: What's on our Plate (Matches Photo 2) */}
+        {/* Section 2: Services Showcase (Corporate Lunch, Event Banquets, Live Theatres) */}
+        <ServicePillars />
+
+        {/* Section 3: Curated Menu Spreads */}
         <MenuSection
           items={initialMenuItems}
           onSelectDish={handleSelectDish}
         />
 
-        {/* Section 3: Let's see what other says (Matches Photo 3) */}
+        {/* Section 4: The Ahlan Standard & Philosophy */}
+        <ExperienceSection />
+
+        {/* Section 5: Turnkey Curated Packages */}
+        <PackageSection
+          packages={initialPackages && initialPackages.length > 0 ? initialPackages : CATERING_PACKAGES}
+          onSelectPackage={handleSelectPackage}
+        />
+
+        {/* Section 6: Real-Time Interactive Quote Calculator */}
+        <QuoteEstimator
+          onProceedToBooking={handleProceedToBooking}
+        />
+
+        {/* Section 7: Testimonials & Social Proof */}
         <TestimonialsSection />
 
-        {/* Section 4: Newsletter (Matches Photo 4) */}
+        {/* Section 8: Tasting Box / Consultation Booking */}
         <NewsletterSection />
       </main>
 
-      {/* Footer (Matches Photo 4) */}
+      {/* Footer */}
       <Footer />
 
       {/* Booking Concierge Modal */}

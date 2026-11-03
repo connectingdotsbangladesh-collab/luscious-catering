@@ -15,11 +15,11 @@ interface QuoteEstimatorProps {
 }
 
 export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooking }) => {
-  const [guestCount, setGuestCount] = useState<number>(65);
-  const [eventType, setEventType] = useState<EventType>('wedding');
-  const [packageTier, setPackageTier] = useState<'essential' | 'signature' | 'imperial-lux'>('signature');
-  const [courses, setCourses] = useState<number>(4);
-  const [hasLiveStation, setHasLiveStation] = useState<boolean>(true);
+  const [guestCount, setGuestCount] = useState<number>(45);
+  const [eventType, setEventType] = useState<EventType>('corporate-lunch');
+  const [packageTier, setPackageTier] = useState<'essential' | 'signature' | 'imperial-lux'>('essential');
+  const [courses, setCourses] = useState<number>(3);
+  const [hasLiveStation, setHasLiveStation] = useState<boolean>(false);
   const [hasBarService, setHasBarService] = useState<boolean>(true);
 
   const quoteRequest: QuoteRequest = useMemo(
@@ -31,12 +31,13 @@ export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooki
       hasLiveStation,
       liveStationCount: 1,
       hasBarService,
-      tablewareTier: 'fine-porcelain',
+      tablewareTier: eventType === 'corporate-lunch' ? 'standard' : 'fine-porcelain',
     }),
     [guestCount, eventType, packageTier, courses, hasLiveStation, hasBarService]
   );
 
   const result = useMemo(() => calculateCateringQuote(quoteRequest), [quoteRequest]);
+  const isCorporateLunch = eventType === 'corporate-lunch';
 
   return (
     <section id="calculator" className={styles.quoteSection}>
@@ -45,46 +46,40 @@ export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooki
           <span className={styles.subHeading}>Transparent Instant Pricing</span>
           <h2 className={styles.sectionTitle}>Interactive Catering Estimator</h2>
           <p className={styles.sectionDesc}>
-            Tailor your bespoke culinary event in real-time. Adjust guest count, dining tiers,
-            and interactive live chef stations with full price transparency.
+            Calculate real-time estimates for corporate office lunch subscriptions or grand event
+            banquets. Full price transparency, no hidden fees, and instant concierge reservation.
           </p>
         </div>
 
         <div className={styles.calculatorCard}>
           {/* Controls Column */}
           <div className={styles.controlsCol}>
-            {/* Guest Slider */}
-            <div className={styles.controlGroup}>
-              <div className={styles.controlLabel}>
-                <span>Expected Guest Count:</span>
-                <span className={styles.counterVal}>{guestCount} Guests</span>
-              </div>
-              <input
-                type="range"
-                min="15"
-                max="350"
-                step="5"
-                value={guestCount}
-                onChange={(e) => setGuestCount(Number(e.target.value))}
-                className={styles.slider}
-              />
-            </div>
-
             {/* Event Type */}
             <div className={styles.controlGroup}>
               <div className={styles.controlLabel}>
-                <span>Occasion & Event Type:</span>
+                <span>Occasion & Catering Scope:</span>
               </div>
               <div className={styles.pillGrid}>
                 {[
-                  { key: 'wedding', label: 'Wedding Gala' },
-                  { key: 'corporate-gala', label: 'Corporate Gala' },
-                  { key: 'private-dinner', label: 'Private Dining' },
+                  { key: 'corporate-lunch', label: '🍱 Office Lunch Plan' },
+                  { key: 'wedding', label: '💍 Wedding & Reception' },
+                  { key: 'corporate-gala', label: '🏛️ Corporate Gala / Seminar' },
+                  { key: 'private-dinner', label: '🎉 Private Celebration' },
                 ].map((item) => (
                   <button
                     key={item.key}
                     type="button"
-                    onClick={() => setEventType(item.key as EventType)}
+                    onClick={() => {
+                      const newType = item.key as EventType;
+                      setEventType(newType);
+                      if (newType === 'corporate-lunch') {
+                        setPackageTier('essential');
+                        setHasLiveStation(false);
+                      } else {
+                        setPackageTier('signature');
+                        setHasLiveStation(true);
+                      }
+                    }}
                     className={`${styles.pillBtn} ${
                       eventType === item.key ? styles.pillBtnActive : ''
                     }`}
@@ -95,23 +90,51 @@ export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooki
               </div>
             </div>
 
+            {/* Guest Slider */}
+            <div className={styles.controlGroup}>
+              <div className={styles.controlLabel}>
+                <span>
+                  {isCorporateLunch ? 'Number of Staff / Meals Daily:' : 'Expected Guest Count:'}
+                </span>
+                <span className={styles.counterVal}>
+                  {guestCount} {isCorporateLunch ? 'Meals' : 'Guests'}
+                </span>
+              </div>
+              <input
+                type="range"
+                min="15"
+                max={isCorporateLunch ? '250' : '500'}
+                step="5"
+                value={guestCount}
+                onChange={(e) => setGuestCount(Number(e.target.value))}
+                className={styles.slider}
+              />
+            </div>
+
             {/* Culinary Tier */}
             <div className={styles.controlGroup}>
               <div className={styles.controlLabel}>
-                <span>Menu Experience Tier:</span>
+                <span>Dining Experience Tier:</span>
               </div>
               <div className={styles.pillGrid}>
-                {(
-                  [
-                    { key: 'essential', label: 'Botanical ($45/p)' },
-                    { key: 'signature', label: 'Signature ($75/p)' },
-                    { key: 'imperial-lux', label: 'Imperial ($120/p)' },
-                  ] as const
+                {(isCorporateLunch
+                  ? [
+                      { key: 'essential', label: 'Executive Bento ($14)' },
+                      { key: 'signature', label: 'Deluxe Thali ($18)' },
+                      { key: 'imperial-lux', label: 'VIP Boardroom ($24)' },
+                    ]
+                  : [
+                      { key: 'essential', label: 'Essential Feast ($45/p)' },
+                      { key: 'signature', label: 'Signature Banquet ($75/p)' },
+                      { key: 'imperial-lux', label: 'Imperial Gala ($120/p)' },
+                    ]
                 ).map((tier) => (
                   <button
                     key={tier.key}
                     type="button"
-                    onClick={() => setPackageTier(tier.key)}
+                    onClick={() =>
+                      setPackageTier(tier.key as 'essential' | 'signature' | 'imperial-lux')
+                    }
                     className={`${styles.pillBtn} ${
                       packageTier === tier.key ? styles.pillBtnActive : ''
                     }`}
@@ -122,37 +145,45 @@ export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooki
               </div>
             </div>
 
-            {/* Courses Count */}
-            <div className={styles.controlGroup}>
-              <div className={styles.controlLabel}>
-                <span>Number of Dining Courses:</span>
-                <span className={styles.counterVal}>{courses} Courses</span>
+            {/* Courses Count (Only for Events) */}
+            {!isCorporateLunch && (
+              <div className={styles.controlGroup}>
+                <div className={styles.controlLabel}>
+                  <span>Number of Dining Courses:</span>
+                  <span className={styles.counterVal}>{courses} Courses</span>
+                </div>
+                <input
+                  type="range"
+                  min="3"
+                  max="7"
+                  step="1"
+                  value={courses}
+                  onChange={(e) => setCourses(Number(e.target.value))}
+                  className={styles.slider}
+                />
               </div>
-              <input
-                type="range"
-                min="3"
-                max="7"
-                step="1"
-                value={courses}
-                onChange={(e) => setCourses(Number(e.target.value))}
-                className={styles.slider}
-              />
-            </div>
+            )}
 
             {/* Interactive Add-ons */}
             <div className={styles.controlGroup}>
               <div className={styles.controlLabel}>
-                <span>Culinary Stations & Service Upgrades:</span>
+                <span>Service Enhancements & Upgrades:</span>
               </div>
 
-              {/* Live Dumpling Station Toggle */}
+              {/* Live Station Toggle */}
               <div
                 className={styles.toggleRow}
                 onClick={() => setHasLiveStation(!hasLiveStation)}
               >
                 <div className={styles.toggleText}>
-                  <span className={styles.toggleTitle}>Live Dim Sum & Dumpling Steam Theatre</span>
-                  <span className={styles.toggleDesc}>+$350 setup & live master chef show</span>
+                  <span className={styles.toggleTitle}>
+                    {isCorporateLunch
+                      ? 'Live Office Dim Sum Steaming Station'
+                      : 'Interactive Live Chef Steam / Grill Station'}
+                  </span>
+                  <span className={styles.toggleDesc}>
+                    +$350 setup & master chef on-site showmanship
+                  </span>
                 </div>
                 <label className={styles.switch}>
                   <input
@@ -164,14 +195,20 @@ export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooki
                 </label>
               </div>
 
-              {/* Bar Service Toggle */}
+              {/* Beverage / Mocktail Service Toggle */}
               <div
                 className={styles.toggleRow}
                 onClick={() => setHasBarService(!hasBarService)}
               >
                 <div className={styles.toggleText}>
-                  <span className={styles.toggleTitle}>Artisan Botanical Bar & Mocktails</span>
-                  <span className={styles.toggleDesc}>+$14 per guest (dedicated mixologists)</span>
+                  <span className={styles.toggleTitle}>
+                    {isCorporateLunch
+                      ? 'Fresh Cold-Pressed Botanical Juice Bar'
+                      : 'Artisan Drink, Sharbat & Mocktail Bar'}
+                  </span>
+                  <span className={styles.toggleDesc}>
+                    {isCorporateLunch ? '+$4 per meal' : '+$14 per guest (dedicated mixologists)'}
+                  </span>
                 </div>
                 <label className={styles.switch}>
                   <input
@@ -189,13 +226,18 @@ export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooki
           <div className={styles.resultsCol}>
             <div>
               <div className={styles.resultsHeader}>
-                <span className={styles.resultsTag}>Instant Catering Estimate</span>
+                <span className={styles.resultsTag}>
+                  {isCorporateLunch ? 'Daily Lunch Estimate' : 'Event Catering Estimate'}
+                </span>
                 <div className={styles.totalDisplay}>
                   <span className={styles.totalCurrency}>$</span>
-                  <span className={styles.totalAmount}>{result.estimatedTotal.toLocaleString()}</span>
+                  <span className={styles.totalAmount}>
+                    {result.estimatedTotal.toLocaleString()}
+                  </span>
                 </div>
                 <p className={styles.perGuestNote}>
-                  ≈ ${result.perPersonRate} per guest (all food, service & prep included)
+                  ≈ ${result.perPersonRate}{' '}
+                  {isCorporateLunch ? 'per meal (tax & thermal drop included)' : 'per guest (all food & service included)'}
                 </p>
               </div>
 
@@ -220,9 +262,16 @@ export const QuoteEstimator: React.FC<QuoteEstimatorProps> = ({ onProceedToBooki
               }
               className={styles.lockInBtn}
             >
-              <span>Lock In This Quote & Reserve Date</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+              <span>{isCorporateLunch ? 'Book Complimentary Office Tasting' : 'Lock In Event Quote & Date'}</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
           </div>

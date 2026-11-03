@@ -36,35 +36,35 @@ export const TestimonialsSection: React.FC = () => {
       id: 0,
       avatar: '/studio_4k_v3_avatar1.png',
       name: 'Marcus Chen',
-      role: 'Executive Gala Producer',
+      role: 'Head of People & Culture, Apex Tech HQ',
       phrases: [
-        'The dumpling banquets delivered by Luscious for our annual tech summit were sensational. ',
-        'The artisanal craftsmanship, authentic Szechuan dipping glazes, and live dim sum stations ',
-        'left our 600 international guests completely in awe. ',
-        'Absolute Michelin quality. ”',
+        'Ahlan Catering completely transformed our corporate lunch experience. ',
+        'Every day at 12:45 PM sharp, over 180 team members receive piping-hot, healthy executive bento boxes. ',
+        'The menu never gets repetitive, and our afternoon productivity has noticeably soared. ',
+        'Unrivaled consistency and warmth! ”',
       ],
     },
     {
       id: 1,
       avatar: '/studio_4k_v3_avatar2.png',
       name: 'Sarah Jenkins',
-      role: 'Tour Production Lead',
+      role: 'Wedding Host & Bride',
       phrases: [
-        "I'm currently on the tour with Paula Abdul and while we were performing in town ",
-        'I came across your raw chocolate fudge at Whole Foods, OMG!!! ',
-        'I was nice enough to share it with Paula Abdul, the Physical therapist and the glam squad. ',
-        'Of course they all agreed with me! So glad we are coming back next week. ”',
+        'For our 550-guest grand wedding reception, choosing Ahlan Catering was the best decision we made. ',
+        'The live dumpling and BBQ stations were an absolute showstopper, OMG!!! ',
+        'Every single guest raved about the flavors, the royal chafing presentation, and the courteous waitstaff. ',
+        'They treated us truly like family from start to finish. ”',
       ],
     },
     {
       id: 2,
       avatar: '/studio_4k_v3_avatar3.png',
       name: 'David Laurent',
-      role: 'Celebrity Wedding Planner',
+      role: 'Director of Global Summits',
       phrases: [
-        'Luscious catered our waterfront luxury wedding with the handmade potstickers and sweet pork chop carving stations. ',
-        'Their attention to detail, organic ingredients, and theatrical banquet setup ',
-        'made it the most talked-about culinary event of the season. ”',
+        'Ahlan orchestrated a flawless 3-day catering service for our 800-attendee leadership summit. ',
+        'Their strict 100% Halal certification, hygienic ISO standards, and seamless VIP buffet coordination ',
+        'earned praise from both our international delegates and keynote speakers. Absolute gold standard. ”',
       ],
     },
   ];
@@ -254,7 +254,7 @@ export const TestimonialsSection: React.FC = () => {
   const handleBowlMouseMove = () => {};
   const handleBowlMouseLeave = () => {};
 
-  const titleWords = "Let's see what other says".split(' ');
+  const titleWords = "Words From Our Table".split(' ');
 
   return (
     <section ref={sectionRef} className={styles.section} id="testimonials">
@@ -319,7 +319,7 @@ export const TestimonialsSection: React.FC = () => {
               ))}
             </h2>
             <p className={`${styles.subtitle} testi-subtitle`}>
-              Please serve yourself without any hesitate
+              Trusted by Corporate Leaders, HR Directors & Wedding Hosts
             </p>
 
             {/* Testimonial Quote with Phrase-by-Phrase Storytelling */}

@@ -42,44 +42,44 @@ export const ExperienceSection: React.FC = () => {
 
         {/* Right Content */}
         <div className={styles.content}>
-          <span className={styles.subHeading}>The Luscious Philosophy</span>
-          <h2 className={styles.title}>Where Culinary Artistry Meets Impeccable Hospitality</h2>
+          <span className={styles.subHeading}>The Ahlan Hospitality Standard</span>
+          <h2 className={styles.title}>Where Warm Hospitality Meets 5-Star Culinary Mastery</h2>
           <p className={styles.lead}>
-            Founded by veteran banquet directors and dim sum artisans, Luscious reimagines event
-            catering as an interactive sensory journey. We believe the table is where human
-            connections flourish.
+            From our state-of-the-art central commissary kitchen to your corporate lunch tables
+            and grand wedding venues, Ahlan Catering was founded on a simple promise: to treat
+            every guest like family with punctual service, hygienic gourmet cooking, and heartfelt warmth.
           </p>
 
           <div className={styles.featureList}>
             <div className={styles.featureItem}>
+              <div className={styles.featureIcon}>🍱</div>
+              <div>
+                <h4 className={styles.featureTitle}>Punctual Office Lunch Subscriptions</h4>
+                <p className={styles.featureDesc}>
+                  Insulated thermal cambros guarantee steaming hot, chef-balanced lunches delivered
+                  to your corporate headquarters on time every day without fail.
+                </p>
+              </div>
+            </div>
+
+            <div className={styles.featureItem}>
               <div className={styles.featureIcon}>🥟</div>
               <div>
-                <h4 className={styles.featureTitle}>Master Dumpling & Dim Sum Atelier</h4>
+                <h4 className={styles.featureTitle}>Artisanal Dim Sum & Theatrical Live Stations</h4>
                 <p className={styles.featureDesc}>
-                  Every dumpling wrapper is kneaded and pleated fresh within hours of your event,
-                  delivering unrivaled texture and delicate burst of savory broth.
+                  Hand-pleated dumplings, sizzling charcoal BBQ skewers, and live wok stir-fries
+                  prepared fresh right in front of your event guests.
                 </p>
               </div>
             </div>
 
             <div className={styles.featureItem}>
-              <div className={styles.featureIcon}>🌿</div>
+              <div className={styles.featureIcon}>📜</div>
               <div>
-                <h4 className={styles.featureTitle}>100% Farm-To-Table & Regenerative Produce</h4>
+                <h4 className={styles.featureTitle}>100% Halal Certified & ISO Food Hygiene</h4>
                 <p className={styles.featureDesc}>
-                  We partner directly with organic family farms for crisp microgreens, heirloom
-                  tomatoes, and pasture-raised meats.
-                </p>
-              </div>
-            </div>
-
-            <div className={styles.featureItem}>
-              <div className={styles.featureIcon}>✨</div>
-              <div>
-                <h4 className={styles.featureTitle}>White-Glove Butler & Sommelier Service</h4>
-                <p className={styles.featureDesc}>
-                  From uniform precision to synchronized course reveals, our banquet captains
-                  execute flawlessly behind the scenes.
+                  Strict farm-to-fork traceability, certified HACCP/ISO food safety protocols,
+                  and temperature-monitored logistics for total peace of mind.
                 </p>
               </div>
             </div>

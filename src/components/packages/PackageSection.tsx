@@ -14,17 +14,19 @@ export const PackageSection: React.FC<PackageSectionProps> = ({ packages, onSele
     <section id="packages" className={styles.packageSection}>
       <div className="container">
         <div className={styles.headerArea}>
-          <span className={styles.subHeading}>Turnkey Catering Solutions</span>
-          <h2 className={styles.sectionTitle}>Curated Event Packages</h2>
+          <span className={styles.subHeading}>Curated Menus & Subscriptions</span>
+          <h2 className={styles.sectionTitle}>Turnkey Packages for Offices & Events</h2>
           <p className={styles.sectionDesc}>
-            Transparent, all-inclusive culinary packages designed for seamless execution.
-            From private intimate dinners to grand galas of 500+ attendees.
+            Transparent, all-inclusive culinary packages designed for effortless dining.
+            Whether powering corporate office teams with hot daily meal plans or hosting 500+ guests
+            at grand celebrations.
           </p>
         </div>
 
         <div className={styles.packageGrid}>
           {packages.map((pkg) => {
             const isFeatured = pkg.tier === 'signature';
+            const isCorporate = pkg.id === 'pkg-corporate-lunch';
             return (
               <div
                 key={pkg.id}
@@ -40,21 +42,31 @@ export const PackageSection: React.FC<PackageSectionProps> = ({ packages, onSele
                 <div className={styles.priceContainer}>
                   <span className={styles.currency}>$</span>
                   <span className={styles.priceAmount}>{pkg.pricePerPerson}</span>
-                  <span className={styles.priceUnit}>/ guest</span>
+                  <span className={styles.priceUnit}>
+                    {isCorporate ? '/ meal' : '/ guest'}
+                  </span>
                 </div>
 
                 <div className={styles.specsRow}>
                   <div className={styles.specItem}>
-                    <span className={styles.specLabel}>Courses</span>
-                    <span className={styles.specValue}>{pkg.courseCount} Courses</span>
+                    <span className={styles.specLabel}>
+                      {isCorporate ? 'Platter' : 'Courses'}
+                    </span>
+                    <span className={styles.specValue}>
+                      {isCorporate ? 'Hot Bento' : `${pkg.courseCount} Courses`}
+                    </span>
                   </div>
                   <div className={styles.specItem}>
-                    <span className={styles.specLabel}>Min Guests</span>
+                    <span className={styles.specLabel}>
+                      {isCorporate ? 'Min Orders' : 'Min Guests'}
+                    </span>
                     <span className={styles.specValue}>{pkg.minGuests}+</span>
                   </div>
                   <div className={styles.specItem}>
                     <span className={styles.specLabel}>Service</span>
-                    <span className={styles.specValue}>{pkg.chefStaffRatio}</span>
+                    <span className={styles.specValue}>
+                      {isCorporate ? 'Hot Delivery' : 'Captains & Staff'}
+                    </span>
                   </div>
                 </div>
 

@@ -117,9 +117,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, pre
       <div ref={modalCardRef} className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>
           <div>
-            <h3 className={styles.modalTitle}>Luscious Banquet Concierge</h3>
+            <h3 className={styles.modalTitle}>Ahlan Catering Concierge</h3>
             <p className={styles.modalSubtitle}>
-              Request date reservation & personalized culinary proposal
+              Request date reservation, corporate lunch trial or personalized catering proposal
             </p>
           </div>
           <button onClick={onClose} className={styles.closeBtn} aria-label="Close modal">
@@ -134,11 +134,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, pre
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
-            <h4 className={styles.successTitle}>Inquiry Reserved!</h4>
+            <h4 className={styles.successTitle}>Inquiry Received!</h4>
             <p className={styles.successMsg}>{successInfo.message}</p>
             <div className={styles.refBadge}>Reference ID: #{successInfo.id}</div>
             <button onClick={onClose} className={styles.submitBtn}>
-              Back to Luscious
+              Back to Ahlan Catering
             </button>
           </div>
         ) : (
@@ -216,11 +216,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, pre
                   onChange={(e) => setEventType(e.target.value as EventType)}
                   className={styles.formSelect}
                 >
+                  <option value="corporate-lunch">Corporate Office Lunch Subscription</option>
                   <option value="wedding">Wedding Gala & Reception</option>
-                  <option value="corporate-gala">Corporate Executive Gala</option>
-                  <option value="private-dinner">Private Chef Dinner</option>
-                  <option value="cocktail-reception">Cocktail & Canapés</option>
-                  <option value="brand-launch">Luxury Brand Launch</option>
+                  <option value="corporate-gala">Corporate Executive Gala & Summit</option>
+                  <option value="private-dinner">Private Chef Dinner & Celebration</option>
+                  <option value="cocktail-reception">Cocktail & Canapés Reception</option>
                 </select>
               </div>
 

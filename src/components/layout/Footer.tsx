@@ -142,155 +142,122 @@ export const Footer: React.FC = () => {
 
       <div className={styles.container}>
         <div ref={columnsGridRef} className={styles.columnsGrid}>
-          {/* Column 1: Get Cooking */}
+          {/* Column 1: Catering Services */}
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>
               <span className="lineMask">
-                <span className="lineInner footer-title-inner">Get Cooking</span>
+                <span className="lineInner footer-title-inner">Catering Services</span>
               </span>
             </h4>
             <ul className={styles.linksList}>
               <li>
-                <Link href="/#menu" className={`${styles.link} hoverUnderline`}>
-                  Easy Asian Takeout
+                <Link href="/#services" className={`${styles.link} hoverUnderline`}>
+                  Daily Corporate Office Lunch
+                </Link>
+              </li>
+              <li>
+                <Link href="/#packages" className={`${styles.link} hoverUnderline`}>
+                  Executive Bento Subscriptions
+                </Link>
+              </li>
+              <li>
+                <Link href="/#services" className={`${styles.link} hoverUnderline`}>
+                  Wedding & Reception Banquets
+                </Link>
+              </li>
+              <li>
+                <Link href="/#services" className={`${styles.link} hoverUnderline`}>
+                  Corporate Galas & Seminars
                 </Link>
               </li>
               <li>
                 <Link href="/#menu" className={`${styles.link} hoverUnderline`}>
-                  Recipe Gallery
+                  Live Dumpling & Grill Theatres
                 </Link>
               </li>
               <li>
-                <Link href="/#menu" className={`${styles.link} hoverUnderline`}>
-                  Ingredients Guide
-                </Link>
-              </li>
-              <li>
-                <Link href="/#menu" className={`${styles.link} hoverUnderline`}>
-                  Weekly Meal Plans
-                </Link>
-              </li>
-              <li>
-                <Link href="/#menu" className={`${styles.link} hoverUnderline`}>
-                  Penang Tour
-                </Link>
-              </li>
-              <li>
-                <Link href="/#menu" className={`${styles.link} hoverUnderline`}>
-                  Conversion Tool
+                <Link href="/#calculator" className={`${styles.link} hoverUnderline`}>
+                  Instant Catering Cost Estimator
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 2: Infomation */}
+          {/* Column 2: The Ahlan Standard */}
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>
               <span className="lineMask">
-                <span className="lineInner footer-title-inner">Infomation</span>
+                <span className="lineInner footer-title-inner">The Ahlan Standard</span>
               </span>
             </h4>
             <ul className={styles.linksList}>
               <li>
-                <Link href="/#testimonials" className={`${styles.link} hoverUnderline`}>
-                  About
+                <Link href="/#services" className={`${styles.link} hoverUnderline`}>
+                  100% Halal Kitchen Certification
                 </Link>
               </li>
               <li>
-                <Link href="/#testimonials" className={`${styles.link} hoverUnderline`}>
-                  Disclosure
+                <Link href="/#services" className={`${styles.link} hoverUnderline`}>
+                  ISO Food Safety & Hygiene
                 </Link>
               </li>
               <li>
-                <Link href="/#testimonials" className={`${styles.link} hoverUnderline`}>
-                  Privacy Policy
+                <Link href="/#services" className={`${styles.link} hoverUnderline`}>
+                  Punctual Hot-Box Delivery Guarantee
                 </Link>
               </li>
               <li>
-                <Link href="/#testimonials" className={`${styles.link} hoverUnderline`}>
-                  Giveaway Rules
+                <Link href="/#newsletter" className={`${styles.link} hoverUnderline`}>
+                  Complimentary Office Lunch Tasting
                 </Link>
               </li>
               <li>
-                <Link href="/#testimonials" className={`${styles.link} hoverUnderline`}>
-                  Giveaway Winners
+                <Link href="/#packages" className={`${styles.link} hoverUnderline`}>
+                  Corporate Invoicing & Retainers
                 </Link>
               </li>
               <li>
-                <Link href="/#testimonials" className={`${styles.link} hoverUnderline`}>
-                  Contact
+                <Link href="/#services" className={`${styles.link} hoverUnderline`}>
+                  Full Tableware & Waitstaff Brigade
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Follow Us */}
+          {/* Column 3: Corporate Headquarters & Inquiries */}
           <div className={styles.column}>
             <h4 className={styles.columnTitle}>
               <span className="lineMask">
-                <span className="lineInner footer-title-inner">Follow Us</span>
+                <span className="lineInner footer-title-inner">Corporate Inquiries</span>
               </span>
             </h4>
             <ul className={styles.linksList}>
+              <li style={{ color: '#88837a', fontSize: '14px', lineHeight: '1.6', marginBottom: '8px' }}>
+                Central Commissary & Hospitality Lounge
+              </li>
               <li>
                 <a
-                  href="https://rss.com"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="mailto:concierge@ahlancatering.com"
                   className={`${styles.link} hoverUnderline`}
                 >
-                  RSS Feeds
+                  concierge@ahlancatering.com
                 </a>
               </li>
               <li>
                 <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="tel:+8801700000000"
                   className={`${styles.link} hoverUnderline`}
                 >
-                  Facebook
+                  Hotline: +880 1700-000000
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`${styles.link} hoverUnderline`}
-                >
-                  Instagram
-                </a>
+              <li style={{ color: '#88837a', fontSize: '13.5px', marginTop: '6px' }}>
+                Corporate Hours: 8:00 AM - 10:00 PM
               </li>
               <li>
-                <a
-                  href="https://pinterest.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`${styles.link} hoverUnderline`}
-                >
-                  Pinterest
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`${styles.link} hoverUnderline`}
-                >
-                  Youtube
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`${styles.link} hoverUnderline`}
-                >
-                  Twitter
-                </a>
+                <Link href="/#newsletter" className={`${styles.link} hoverUnderline`}>
+                  Schedule Tasting Session →
+                </Link>
               </li>
             </ul>
           </div>
@@ -299,7 +266,7 @@ export const Footer: React.FC = () => {
         {/* Copyright notice */}
         <div ref={bottomBarRef} className={styles.bottomBar}>
           <p className={styles.copyright}>
-            © {new Date().getFullYear()} Luscious Dim Sum & Haute Banquet Catering. All rights reserved.
+            © {new Date().getFullYear()} Ahlan Catering & Events. Warm Hospitality • 100% Halal • Michelin-Inspired Culinary Mastery. All rights reserved.
           </p>
         </div>
       </div>

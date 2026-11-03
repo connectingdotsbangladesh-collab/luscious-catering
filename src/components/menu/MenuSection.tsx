@@ -15,7 +15,9 @@ interface MenuSectionProps {
 }
 
 export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectDish }) => {
-  const [activeTab, setActiveTab] = useState<'Appetizers' | 'Main Dish' | 'Dessert'>('Main Dish');
+  const [activeTab, setActiveTab] = useState<
+    'Corporate Lunch' | 'Event Banquets' | 'Live Stations'
+  >('Corporate Lunch');
   const isFirstRender = useRef(true);
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,93 +29,93 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectDish }) => {
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const mainDishes = [
+  const corporateDishes = [
     {
-      id: 'dish-1',
-      name: 'Stirred Egg',
+      id: 'corp-1',
+      name: 'Executive Royal Bento',
       description:
-        'This might be the most common Chinese family dish. The dish is easy to cook, fry the stirred egg and sliced tomato.',
+        'Tender herb-marinated chicken or glazed cuts, aromatic basmati pilaf, wok-tossed farm greens, lentil soup & fresh sweet.',
       image: '/studio_4k_v3_stirred_egg.png',
+      price: 14,
+    },
+    {
+      id: 'corp-2',
+      name: 'Artisan Protein & Grain Bowl',
+      description:
+        'Grilled lemon-herb chicken over organic quinoa, steamed edamame, crisp garden greens, and sweet sesame citrus vinaigrette.',
+      image: '/studio_4k_v3_kung_pao.png',
+      price: 15,
+    },
+    {
+      id: 'corp-3',
+      name: 'Grand Corporate Thali Box',
+      description:
+        'A comforting corporate feast: rich Cashew korma, ghee pilaf, tempered yellow dal, handmade paratha, and mint raita.',
+      image: '/studio_4k_v3_pork_chops.png',
+      price: 16,
+    },
+  ];
+
+  const banquetDishes = [
+    {
+      id: 'banquet-1',
+      name: 'Royal Steamed Dumpling Platter',
+      description:
+        'Handmade thin pastry pleated by dim sum masters, stuffed with savory tender filling, accompanied by aged chili garlic oil.',
+      image: '/studio_4k_v3_hero_food.png',
       price: 18,
     },
     {
-      id: 'dish-2',
-      name: 'Kung Pao Chicken',
+      id: 'banquet-2',
+      name: 'Imperial Szechuan Wok Sizzle',
       description:
-        "When temperatures plummet and you're craving something warm and cozy, you can't go wrong with fluffy steamed rice and tender chicken.",
+        'Crispy poultry tenders enveloped in a rich, glossy reduction of fermented chili, crushed ginger, sweet garlic, and roasted peanuts.',
       image: '/studio_4k_v3_kung_pao.png',
-      price: 24,
+      price: 22,
     },
     {
-      id: 'dish-3',
-      name: 'Sweet Pork Chops',
+      id: 'banquet-3',
+      name: 'Slow-Braised Glazed Medallions',
       description:
-        'Sweet and sour dishes are popular among Chinese families. Although the ingredients and cooking methods vary from place to place.',
+        'Slow-cooked for over six hours until fork-tender, basted in spiced star anise reduction, caramelized ginger, and baby greens.',
       image: '/studio_4k_v3_pork_chops.png',
       price: 26,
     },
   ];
 
-  const appetizerDishes = [
+  const liveStationDishes = [
     {
-      id: 'app-1',
-      name: 'Steamed Potstickers',
+      id: 'live-1',
+      name: 'Interactive Dim Sum Theatre',
       description:
-        'Handcrafted dim sum parcel wrapped in silky hand-rolled wheat dough with heritage pork and chives.',
+        'Master chefs rolling and steaming hot dumplings live before your guests with 6 artisan signature dipping sauces.',
       image: '/studio_4k_v3_hero_food.png',
-      price: 16,
+      price: 35,
     },
     {
-      id: 'app-2',
-      name: 'Crispy Snow Peas & Soy',
+      id: 'live-2',
+      name: 'Cast-Iron Skillet & Sizzle',
       description:
-        'Crisp green pea pods tossed with sesame chili emulsion and aged black vinegar dipping sauce.',
-      image: '/studio_4k_v3_snowpeas.png',
-      price: 14,
+        'Live charred skewers, flame-kissed greens, and spiced artisan flatbreads straight off the sizzling griddle.',
+      image: '/studio_4k_v3_skillet.png',
+      price: 32,
     },
     {
-      id: 'app-3',
+      id: 'live-3',
       name: 'Imperial Crayfish Glaze',
       description:
-        'Sweet red river crayfish simmered in aromatic star anise and Szechuan peppercorn glaze.',
+        'Sweet red river crayfish simmered in aromatic star anise, citrus pearls, and Szechuan peppercorn glaze.',
       image: '/studio_4k_v3_lobster.png',
-      price: 28,
-    },
-  ];
-
-  const dessertDishes = [
-    {
-      id: 'des-1',
-      name: 'Raw Chocolate Fudge',
-      description:
-        'Rich dark raw cacao confection infused with organic vanilla bean and Maldon sea salt flakes.',
-      image: '/studio_4k_v3_pork_chops.png',
-      price: 15,
-    },
-    {
-      id: 'des-2',
-      name: 'Sweet Taro Pudding',
-      description:
-        'Silky whipped purple taro custard with sweet coconut milk reduction and black sesame seed dust.',
-      image: '/studio_4k_v3_stirred_egg.png',
-      price: 14,
-    },
-    {
-      id: 'des-3',
-      name: 'Candied Mandarin Oranges',
-      description:
-        'Fragrant citrus slices glazed in ginger honey reduction with wild mint leaves.',
-      image: '/studio_4k_v3_kung_pao.png',
-      price: 12,
+      price: 38,
     },
   ];
 
   const currentDishes =
-    activeTab === 'Main Dish'
-      ? mainDishes
-      : activeTab === 'Appetizers'
-      ? appetizerDishes
-      : dessertDishes;
+    activeTab === 'Corporate Lunch'
+      ? corporateDishes
+      : activeTab === 'Event Banquets'
+      ? banquetDishes
+      : liveStationDishes;
 
   // Position & animate the sliding orange tab underline indicator
   useEffect(() => {
@@ -449,12 +451,18 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectDish }) => {
             ))}
           </h2>
           <p className={`${styles.subtitle} menu-subtitle`}>
-            Please serve yourself without any hesitate
+            100% Halal Certified • Prepared Fresh with Unconditional Hospitality
           </p>
 
           {/* Filter Tabs with Morphing Sliding Indicator */}
           <div ref={tabsWrapRef} className={styles.tabs}>
-            {(['Appetizers', 'Main Dish', 'Dessert'] as const).map((tab) => (
+            {(
+              [
+                'Corporate Lunch',
+                'Event Banquets',
+                'Live Stations',
+              ] as const
+            ).map((tab) => (
               <button
                 key={tab}
                 data-tab={tab}
@@ -486,11 +494,11 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onSelectDish }) => {
                   description: dish.description,
                   pricePerPerson: dish.price,
                   category:
-                    activeTab === 'Main Dish'
+                    activeTab === 'Corporate Lunch'
+                      ? 'corporate-lunch'
+                      : activeTab === 'Event Banquets'
                       ? 'gourmet-mains'
-                      : activeTab === 'Appetizers'
-                      ? 'hors-doeuvres'
-                      : 'desserts',
+                      : 'live-stations',
                   dietary: dish.id === 'dish-1' ? ['vegetarian'] : ['chef-special'],
                   image: dish.image,
                 })
