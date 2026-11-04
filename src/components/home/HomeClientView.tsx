@@ -14,6 +14,7 @@ import { NewsletterSection } from '../newsletter/NewsletterSection';
 import { Footer } from '../layout/Footer';
 import { BookingModal } from '../booking/BookingModal';
 import { AuthModal } from '../auth/AuthModal';
+import { FloatingConcierge } from '../concierge/FloatingConcierge';
 import { CATERING_PACKAGES } from '../../repositories/firebase/mockData';
 
 interface HomeClientViewProps {
@@ -135,6 +136,8 @@ export const HomeClientView: React.FC<HomeClientViewProps> = ({
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}
       />
+      {/* Floating WhatsApp Concierge */}
+      <FloatingConcierge />
     </>
   );
 };
