@@ -1,16 +1,90 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './ServicePillars.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const ServicePillars: React.FC = () => {
+export interface MealBoxCard {
+  id: string;
+  scriptLabel: string;
+  title: string;
+  price: string;
+  originalPrice: string;
+  currency: string;
+  rating: string;
+  description: string;
+  theme: 'olive' | 'amber';
+  image: string;
+  alt: string;
+  category: string;
+  serviceAnchor: string;
+}
+
+const SIGNATURE_BOXES: MealBoxCard[] = [
+  {
+    id: 'box-jeera-chawal',
+    scriptLabel: 'Jeera',
+    title: 'Chawal',
+    price: '180',
+    originalPrice: '200',
+    currency: '₹',
+    rating: '4.5',
+    description:
+      'Aromatic, soft, and tender grains of aged basmati layered with royal cumin seeds, golden ghee, and fresh garden cilantro.',
+    theme: 'olive',
+    image: '/bento_jeera_rice.png',
+    alt: 'Jeera Chawal Executive Lunch Box',
+    category: 'Corporate Office Lunch',
+    serviceAnchor: 'packages',
+  },
+  {
+    id: 'box-kadai-chicken',
+    scriptLabel: 'Kadai',
+    title: 'Chicken',
+    price: '220',
+    originalPrice: '260',
+    currency: '₹',
+    rating: '4.5',
+    description:
+      'Succulent chicken simmered in a spiced tomato-onion wok reduction with roasted bell peppers, crushed coriander, and house garam masala.',
+    theme: 'amber',
+    image: '/bento_kadai_chicken.png',
+    alt: 'Kadai Chicken Banquet Box',
+    category: 'Weddings & Celebrations',
+    serviceAnchor: 'menu',
+  },
+  {
+    id: 'box-palak-paneer',
+    scriptLabel: 'Palak',
+    title: 'Paneer',
+    price: '200',
+    originalPrice: '220',
+    currency: '₹',
+    rating: '4.5',
+    description:
+      'Fresh artisanal cottage cheese cubes folded into velvety slow-simmered spiced spinach purée, crowned with whole dried red chilies.',
+    theme: 'olive',
+    image: '/bento_palak_paneer.png',
+    alt: 'Palak Paneer Bespoke Box',
+    category: 'Live Cooking & Bespoke',
+    serviceAnchor: 'calculator',
+  },
+];
+
+interface ServicePillarsProps {
+  onOrderNow?: (dishName: string) => void;
+}
+
+export const ServicePillars: React.FC<ServicePillarsProps> = ({ onOrderNow }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [startIndex, setStartIndex] = useState(0);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -19,12 +93,12 @@ export const ServicePillars: React.FC = () => {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      const cards = cardsRef.current?.querySelectorAll(`.${styles.pillarCard}`);
+      const cards = carouselRef.current?.querySelectorAll(`.${styles.bentoCard}`);
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 65%',
+          start: 'top 70%',
           toggleActions: 'play none none none',
         },
         defaults: { ease: 'power2.out', force3D: true },
@@ -33,24 +107,23 @@ export const ServicePillars: React.FC = () => {
       if (headerRef.current) {
         tl.fromTo(
           headerRef.current,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.0 },
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9 },
           0
         );
       }
 
       if (cards && cards.length > 0) {
         cards.forEach((card, idx) => {
-          const fromX = idx === 0 ? -60 : idx === 1 ? 0 : 60;
-          const fromY = idx === 1 ? 40 : 20;
+          const fromX = idx === 0 ? -40 : idx === 1 ? 0 : 40;
           tl.fromTo(
             card,
-            { x: fromX, y: fromY, opacity: 0 },
+            { x: fromX, y: 30, opacity: 0 },
             {
               x: 0,
               y: 0,
               opacity: 1,
-              duration: 1.1,
+              duration: 1.0,
             },
             0.15 + idx * 0.12
           );
@@ -61,147 +134,149 @@ export const ServicePillars: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    const lenis = (
-      window as Window & {
-        __lenis?: {
-          scrollTo: (
-            target: HTMLElement | string,
-            options?: { offset?: number; duration?: number }
-          ) => void;
-        };
-      }
-    ).__lenis;
-    if (lenis && el) {
-      lenis.scrollTo(el, { offset: -20, duration: 1.25 });
+  const handlePrev = () => {
+    setStartIndex((prev) => (prev > 0 ? prev - 1 : SIGNATURE_BOXES.length - 1));
+  };
+
+  const handleNext = () => {
+    setStartIndex((prev) => (prev < SIGNATURE_BOXES.length - 1 ? prev + 1 : 0));
+  };
+
+  const displayedBoxes = SIGNATURE_BOXES.map((_, i) => {
+    const idx = (startIndex + i) % SIGNATURE_BOXES.length;
+    return SIGNATURE_BOXES[idx];
+  });
+
+  const handleOrderClick = (box: MealBoxCard) => {
+    if (onOrderNow) {
+      onOrderNow(`${box.scriptLabel} ${box.title}`);
     } else {
+      const el = document.getElementById(box.serviceAnchor);
       el?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="services" ref={sectionRef} className={styles.pillarsSection}>
+    <section id="services" ref={sectionRef} className={styles.sectionWrapper}>
+      {/* Top Wave Organic Transition */}
+      <div className={styles.waveTop} aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path
+            d="M0,0 C320,60 560,10 880,55 C1200,90 1340,30 1440,50 L1440,0 L0,0 Z"
+            fill="#faf8f5"
+          />
+        </svg>
+      </div>
+
       <div className="container">
+        {/* Section Header */}
         <div ref={headerRef} className={styles.headerArea}>
-          <span className={styles.subHeading}>Culinary Versatility & Hospitality</span>
-          <h2 className={styles.sectionTitle}>Catering Solutions Tailored to Every Need</h2>
+          <span className={styles.subHeading}>Daily Office Meals & Event Feasts</span>
+          <h2 className={styles.sectionTitle}>Signature Ahlan Catering Boxes</h2>
           <p className={styles.sectionDesc}>
-            Whether energizing high-achieving corporate teams with daily hot lunches, orchestrating
-            royal wedding banquets, or firing up theatrical live cooking stations — Ahlan Catering
-            delivers seamless culinary perfection from start to finish.
+            From piping-hot daily corporate desk bento boxes to royal celebrations and live theatre
+            stations — every dish is crafted with fresh whole spices and 5-star precision.
           </p>
         </div>
 
-        <div ref={cardsRef} className={styles.grid}>
-          {/* Pillar 1: Office & Corporate Lunch */}
-          <div className={styles.pillarCard}>
-            <div className={styles.badge}>
-              <span>🍱 Corporate Office Lunch</span>
-            </div>
-            <h3 className={styles.cardTitle}>Daily Executive Meals & Subscriptions</h3>
-            <p className={styles.cardDesc}>
-              Elevate workplace morale and productivity. Fresh, nutritionist-curated gourmet lunch
-              boxes delivered piping hot to your office desks every single day.
-            </p>
-            <ul className={styles.featuresList}>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Insulated thermal cambro delivery guaranteed by 12:45 PM</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>4-week rotating chef menus (Never eat the same lunch twice)</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Individual eco-bento packaging with zero desk mess</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Consolidated monthly corporate billing & flexible headcount</span>
-              </li>
-            </ul>
-            <button
-              onClick={() => scrollToSection('packages')}
-              className={styles.cardActionBtn}
-            >
-              Explore Office Lunch Plans →
-            </button>
+        {/* Carousel / Cards Track with Navigation Arrows */}
+        <div className={styles.showcaseContainer}>
+          {/* Left Arrow Button */}
+          <button
+            onClick={handlePrev}
+            className={`${styles.navArrow} ${styles.navArrowLeft}`}
+            aria-label="Previous meal box"
+          >
+            <ChevronLeft size={22} strokeWidth={2.5} />
+          </button>
+
+          {/* 3 Signature Cards */}
+          <div ref={carouselRef} className={styles.cardsGrid}>
+            {displayedBoxes.map((box) => {
+              const cardThemeClass =
+                box.theme === 'olive' ? styles.themeOlive : styles.themeAmber;
+
+              return (
+                <article
+                  key={box.id}
+                  className={`${styles.bentoCard} ${cardThemeClass}`}
+                >
+                  {/* Floating Tilted Bento Container */}
+                  <div className={styles.bentoTray}>
+                    <Image
+                      src={box.image}
+                      alt={box.alt}
+                      width={380}
+                      height={320}
+                      className={styles.trayImage}
+                      priority
+                    />
+                  </div>
+
+                  {/* Circular Price Stamp Badge */}
+                  <div className={styles.priceStamp}>
+                    <span className={styles.stampPriceLabel}>PRICE</span>
+                    <div className={styles.stampPriceValue}>
+                      <span className={styles.stampCurrency}>{box.currency}</span>
+                      <span className={styles.stampAmount}>{box.price}</span>
+                    </div>
+                    <span className={styles.stampStrikePrice}>
+                      {box.currency}
+                      {box.originalPrice}
+                    </span>
+                  </div>
+
+                  {/* Category Pill Tag */}
+                  <div className={styles.categoryPill}>
+                    <span>{box.category}</span>
+                  </div>
+
+                  {/* Cursive Subtitle */}
+                  <span className={styles.cursiveSubtitle}>{box.scriptLabel}</span>
+
+                  {/* Big Bold Dish Title */}
+                  <h3 className={styles.dishTitle}>{box.title}</h3>
+
+                  {/* Rating Capsule */}
+                  <div className={styles.ratingCapsule}>
+                    <span className={styles.starIcons}>★★★★★</span>
+                    <span className={styles.ratingNumber}>{box.rating}</span>
+                  </div>
+
+                  {/* Appetizing Description Copy */}
+                  <p className={styles.dishDescription}>{box.description}</p>
+
+                  {/* Order Now CTA Button */}
+                  <button
+                    onClick={() => handleOrderClick(box)}
+                    className={styles.orderBtn}
+                  >
+                    ORDER NOW
+                  </button>
+                </article>
+              );
+            })}
           </div>
 
-          {/* Pillar 2: Banquets & Grand Events */}
-          <div className={`${styles.pillarCard} ${styles.pillarCardHighlight}`}>
-            <div className={styles.badge} style={{ background: '#eb5722', color: '#ffffff' }}>
-              <span>🎪 Weddings & Grand Events</span>
-            </div>
-            <h3 className={styles.cardTitle}>Weddings, Galas, Seminars & Celebrations</h3>
-            <p className={styles.cardDesc}>
-              Cherished milestones demand extraordinary feasts. From 50-guest engagements to
-              2,000+ attendee corporate summits, we orchestrate royal banquet dining.
-            </p>
-            <ul className={styles.featuresList}>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Multi-course royal buffets with polished chafing dish setups</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Fine porcelain chinaware, crystal glassware & gold flatware</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Uniformed banquet floor captains & attentive table servers</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Complimentary pre-event food tasting session for hosts</span>
-              </li>
-            </ul>
-            <button
-              onClick={() => scrollToSection('menu')}
-              className={`${styles.cardActionBtn} ${styles.cardActionBtnPrimary}`}
-            >
-              Discover Event Banquets →
-            </button>
-          </div>
-
-          {/* Pillar 3: Live Chef Cooking & Full-Service */}
-          <div className={styles.pillarCard}>
-            <div className={styles.badge}>
-              <span>👨‍🍳 Full-Service Turnkey Catering</span>
-            </div>
-            <h3 className={styles.cardTitle}>Live Cooking Theatres & Bespoke Catering</h3>
-            <p className={styles.cardDesc}>
-              Everything a world-class caterer does — executed with 5-star precision. We transform
-              mealtime into an unforgettable interactive show for your guests.
-            </p>
-            <ul className={styles.featuresList}>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Live bamboo dim sum & dumpling steaming theatre on-site</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>Sizzling charcoal BBQ, open-flame grills & carving stations</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>100% Halal certified, allergen-safe & custom dietary curation</span>
-              </li>
-              <li className={styles.featureItem}>
-                <span className={styles.checkIcon}>✓</span>
-                <span>End-to-end logistics: kitchen setup, tablescaping & clean-up</span>
-              </li>
-            </ul>
-            <button
-              onClick={() => scrollToSection('calculator')}
-              className={styles.cardActionBtn}
-            >
-              Get Instant Quote Now →
-            </button>
-          </div>
+          {/* Right Arrow Button */}
+          <button
+            onClick={handleNext}
+            className={`${styles.navArrow} ${styles.navArrowRight}`}
+            aria-label="Next meal box"
+          >
+            <ChevronRight size={22} strokeWidth={2.5} />
+          </button>
         </div>
+      </div>
+
+      {/* Bottom Wave Transition */}
+      <div className={styles.waveBottom} aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path
+            d="M0,40 C340,80 620,10 980,60 C1220,90 1360,35 1440,45 L1440,80 L0,80 Z"
+            fill="#faf8f5"
+          />
+        </svg>
       </div>
     </section>
   );

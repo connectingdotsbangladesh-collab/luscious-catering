@@ -92,7 +92,12 @@ export const HomeClientView: React.FC<HomeClientViewProps> = ({
         <Hero onExploreClick={scrollToMenu} />
 
         {/* Section 2: Services Showcase (Corporate Lunch, Event Banquets, Live Theatres) */}
-        <ServicePillars />
+        <ServicePillars
+          onOrderNow={(dishName) => {
+            setBookingPrefill({ dishName });
+            setIsBookingOpen(true);
+          }}
+        />
 
         {/* Section 3: Curated Menu Spreads */}
         <MenuSection

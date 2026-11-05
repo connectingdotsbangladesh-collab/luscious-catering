@@ -1,182 +1,349 @@
-.pillarsSection {
-  padding: 100px 0;
-  background-color: var(--bg-canvas-subtle);
+.sectionWrapper {
   position: relative;
+  background-color: #f5f4fa;
+  padding: 80px 0 100px;
   overflow: hidden;
 }
 
+.waveTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.waveTop svg {
+  width: 100%;
+  height: 50px;
+  display: block;
+}
+
+.waveBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.waveBottom svg {
+  width: 100%;
+  height: 50px;
+  display: block;
+}
+
 .headerArea {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  max-width: 760px;
-  margin: 0 auto 56px;
+  max-width: 720px;
+  margin: 0 auto 72px;
 }
 
 .subHeading {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--color-primary);
-  margin-bottom: 12px;
+  color: #637c35;
+  margin-bottom: 10px;
   display: block;
 }
 
 .sectionTitle {
   font-family: var(--font-serif);
-  font-size: clamp(32px, 3.8vw, 44px);
+  font-size: clamp(30px, 3.4vw, 42px);
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 16px;
+  color: #1e1a14;
+  margin-bottom: 14px;
   line-height: 1.2;
 }
 
 .sectionDesc {
-  font-size: 16px;
-  color: var(--text-muted);
+  font-size: 15.5px;
+  color: #5c574f;
   line-height: 1.65;
 }
 
-.grid {
+/* Showcase Container */
+.showcaseContainer {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 50px;
+}
+
+.cardsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  align-items: stretch;
+  gap: 28px;
+  width: 100%;
+  max-width: 1140px;
 }
 
-.pillarCard {
-  background: #ffffff;
-  border-radius: var(--radius-lg);
-  padding: 40px 32px;
-  border: 1px solid var(--border-subtle);
+/* Bento Card Base */
+.bentoCard {
+  position: relative;
+  border-radius: 24px;
+  padding: 135px 28px 32px 28px;
+  overflow: visible;
   display: flex;
   flex-direction: column;
-  position: relative;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.pillarCard:hover {
+.bentoCard:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(235, 87, 34, 0.3);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
 }
 
-.pillarCardHighlight {
-  border: 2px solid var(--color-primary);
-  box-shadow: 0 16px 40px rgba(235, 87, 34, 0.12);
-  transform: scale(1.02);
+/* Color Themes matching reference */
+.themeOlive {
+  background: #637c35;
 }
 
-.pillarCardHighlight:hover {
-  transform: scale(1.02) translateY(-8px);
+.themeAmber {
+  background: #df9736;
 }
 
-.badge {
-  display: inline-flex;
+/* Floating Tilted Bento Tray */
+.bentoTray {
+  position: absolute;
+  top: -62px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  width: 250px;
+  height: 190px;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.36));
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bentoCard:hover .bentoTray {
+  transform: translateX(-50%) rotate(-8deg) scale(1.04);
+}
+
+.trayImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Price Stamp Circular Badge */
+.priceStamp {
+  position: absolute;
+  top: 66px;
+  right: 18px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px dashed #ded8cf;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  justify-content: center;
+  text-align: center;
+  z-index: 5;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.bentoCard:hover .priceStamp {
+  transform: scale(1.06);
+}
+
+.stampPriceLabel {
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7b8277;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.stampPriceValue {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  line-height: 1;
+}
+
+.stampCurrency {
+  font-size: 13px;
+  font-weight: 800;
+  color: #2b2b2b;
+  margin-right: 1px;
+}
+
+.stampAmount {
+  font-size: 21px;
+  font-weight: 900;
+  color: #222222;
+  letter-spacing: -0.02em;
+}
+
+.stampStrikePrice {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9c978f;
+  text-decoration: line-through;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* Category Pill */
+.categoryPill {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-primary);
-  background: var(--color-primary-light);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  margin-bottom: 20px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+/* Cursive Subtitle */
+.cursiveSubtitle {
+  font-family: var(--font-script), 'Caveat', cursive;
+  font-size: 32px;
+  font-weight: 600;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 2px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Dish Title */
+.dishTitle {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+/* Rating Capsule */
+.ratingCapsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 14px;
   align-self: flex-start;
 }
 
-.cardTitle {
-  font-family: var(--font-serif);
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 12px;
-  line-height: 1.25;
+.starIcons {
+  color: #df9736;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  line-height: 1;
 }
 
-.cardDesc {
-  font-size: 14.5px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.featuresList {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 32px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex-grow: 1;
-}
-
-.featureItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13.5px;
-  color: #3e3b37;
-  line-height: 1.5;
-}
-
-.checkIcon {
-  color: var(--color-primary);
+.ratingNumber {
+  font-size: 12.5px;
   font-weight: 800;
-  font-size: 15px;
-  flex-shrink: 0;
-  line-height: 1.3;
+  color: #222222;
+  line-height: 1;
 }
 
-.cardActionBtn {
+/* Description */
+.dishDescription {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 24px;
+  min-height: 64px;
+}
+
+/* Order Button */
+.orderBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  padding: 13px 20px;
-  border-radius: var(--radius-full);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  background: #f7f4ed;
-  color: var(--text-main);
-  border: 1px solid rgba(30, 26, 20, 0.1);
+  align-self: flex-start;
+  background: #341e12;
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 11px 26px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
 }
 
-.cardActionBtn:hover {
-  background: var(--color-primary);
+.orderBtn:hover {
+  background: #4a2c1b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation Arrows */
+.navArrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #555555;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.navArrow:hover {
+  background: #1e1a14;
   color: #ffffff;
-  border-color: var(--color-primary);
-  box-shadow: 0 6px 20px rgba(235, 87, 34, 0.3);
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
-.cardActionBtnPrimary {
-  background: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
-  box-shadow: 0 6px 20px rgba(235, 87, 34, 0.3);
-}
-
-.cardActionBtnPrimary:hover {
-  background: var(--color-primary-hover);
-}
-
-@media (max-width: 980px) {
-  .grid {
+@media (max-width: 1040px) {
+  .cardsGrid {
     grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 420px;
+    gap: 80px;
   }
 
-  .pillarCardHighlight {
-    transform: none;
+  .navArrow {
+    display: none;
   }
 
-  .pillarCardHighlight:hover {
-    transform: translateY(-8px);
+  .showcaseContainer {
+    padding-top: 40px;
   }
 }
