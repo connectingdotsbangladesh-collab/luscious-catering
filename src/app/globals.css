@@ -42,6 +42,11 @@ h1, h2, h3, h4, .serif-font {
   line-height: 1.15;
 }
 
+/* Ensure smooth anchor navigation without navbar clipping */
+section[id] {
+  scroll-margin-top: 84px;
+}
+
 /* Container */
 .container {
   width: 100%;
